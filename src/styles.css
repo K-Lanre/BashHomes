@@ -79,15 +79,59 @@
 .site-footer > span, .site-footer a { @apply whitespace-nowrap; }
 .site-footer nav::before { content: "·"; @apply text-brass; }
 
-.features-page { @apply mx-auto max-w-[100rem] px-[6vw] pt-12 pb-14; }
-.features-heading { @apply mb-8; }
-.features-heading h1, .contact-content h1, .not-found h1 { @apply text-[clamp(3.7rem,7vw,7rem)] leading-[.95]; }
-.features-heading p { @apply mt-3 text-sm text-slate/80; }
-.space-grid { @apply grid grid-cols-3 gap-5; }
-.space-card { @apply scroll-mt-5; }
-.space-card img { @apply aspect-[4/5] w-full bg-alabaster object-cover; }
-.space-card h2 { @apply mt-4 text-4xl leading-none; }
-.space-card p { @apply mt-2 text-sm leading-relaxed; }
+.room-gallery { @apply relative isolate flex min-h-[clamp(550px,73svh,840px)] flex-col justify-end bg-slate-deep text-linen; }
+.room-preview { @apply absolute inset-0 cursor-zoom-in overflow-hidden text-linen; }
+.room-preview:focus-visible { outline-offset: -5px; }
+.room-preview::after {
+  content: "";
+  @apply pointer-events-none absolute inset-0;
+  background: linear-gradient(90deg, #101b20db, #101b204f 30%, transparent 66%),
+    linear-gradient(0deg, #101b20eb, #101b2090 21%, transparent 65%);
+}
+.room-preview-image { @apply size-full object-cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .room-preview-image { animation: room-photo-in .25s ease-out; }
+}
+@keyframes room-photo-in { from { opacity: .55; } to { opacity: 1; } }
+.room-expand { @apply absolute top-6 right-[6vw] z-1 grid size-11 place-items-center rounded-full bg-slate-deep/80 shadow-lg; }
+.room-rail {
+  @apply absolute top-1/2 left-[6vw] z-2 flex -translate-y-1/2 flex-col gap-5;
+  --room-dot: 3.5rem;
+}
+.room-rail::before {
+  content: "";
+  @apply absolute bg-alabaster/60;
+  top: calc(var(--room-dot) / 2);
+  bottom: calc(var(--room-dot) / 2);
+  left: calc(var(--room-dot) / 2);
+  width: 1px;
+}
+.room-picker { @apply relative flex w-fit cursor-pointer items-center gap-3 text-left text-sm font-semibold; }
+.room-picker-image { @apply block shrink-0 overflow-hidden rounded-full bg-slate-deep p-1 transition-colors; width: var(--room-dot); height: var(--room-dot); }
+.room-picker-image img { @apply block size-full rounded-full object-cover opacity-80 transition-opacity; }
+.room-picker:hover .room-picker-image, .room-picker[aria-pressed="true"] .room-picker-image { @apply bg-brass; }
+.room-picker:hover img, .room-picker[aria-pressed="true"] img { @apply opacity-100; }
+.room-picker[aria-pressed="true"] .room-picker-label { @apply text-brass; }
+.room-details { @apply pointer-events-none relative z-1 mb-9 ml-[max(15rem,24vw)] mr-[6vw]; }
+.room-details h1 { @apply font-sans text-xs font-bold tracking-[.17em] text-brass uppercase; }
+.room-details h2 { @apply mt-2 text-[clamp(4rem,9vw,8rem)] leading-[.88]; }
+.room-details p { @apply mt-4 text-sm leading-relaxed text-linen; }
+.room-photo-bar { @apply pointer-events-none relative z-1 flex items-end justify-between gap-4 px-[6vw] pb-6; }
+.room-image-note { @apply text-xs text-alabaster; }
+.room-photo-controls { @apply pointer-events-auto flex items-center gap-3; }
+.room-thumbs { @apply flex gap-2; }
+.room-thumb { @apply h-15 w-[clamp(4.25rem,8vw,7.5rem)] cursor-pointer overflow-hidden rounded border-2 border-linen/45 bg-slate-deep transition-colors hover:border-linen; }
+.room-thumb img { @apply size-full object-cover opacity-75 transition-opacity; }
+.room-thumb[aria-pressed="true"] { @apply border-brass; }
+.room-thumb:hover img, .room-thumb[aria-pressed="true"] img { @apply opacity-100; }
+.room-step { @apply grid size-10 shrink-0 cursor-pointer place-items-center rounded-full bg-slate-deep/90 text-linen shadow-lg transition-colors hover:bg-cognac; }
+.room-lightbox { @apply fixed inset-0 m-auto max-h-[92svh] w-[min(94vw,76rem)] max-w-none overflow-auto rounded-lg bg-slate-deep p-3 text-linen shadow-2xl sm:p-5; }
+.room-lightbox::backdrop { background: #111b20df; }
+.room-lightbox-content { @apply relative; }
+.room-lightbox-content > img { @apply mx-auto max-h-[72svh] w-full object-contain; }
+.room-lightbox-close { @apply absolute right-1 top-1; }
+.room-lightbox-controls { @apply mt-3 flex items-center justify-center gap-5 text-sm; }
+.contact-content h1, .not-found h1 { @apply text-[clamp(3.7rem,7vw,7rem)] leading-[.95]; }
 .features-cta { @apply py-8 text-center; }
 .contact-page { @apply grid min-h-[calc(100svh-8.5rem)] grid-cols-[.9fr_1.1fr]; }
 .contact-image { @apply relative min-h-70 overflow-hidden bg-slate; }
@@ -135,8 +179,21 @@
   .services { @apply pt-8 pb-9; }
   .services-list { @apply grid-cols-3; }
   .services-list li { @apply text-xs; }
-  .space-grid { @apply grid-cols-1 gap-8; }
-  .space-card img { @apply aspect-[5/4]; }
+  .room-gallery { @apply min-h-[clamp(510px,72svh,690px)]; }
+  .room-preview::after { background: linear-gradient(0deg, #101b20f5, #101b2090 34%, transparent 65%, #101b20ad); }
+  .room-rail {
+    @apply top-5 left-[6vw] translate-y-0 flex-row items-start gap-[clamp(.85rem,4vw,1.75rem)];
+    --room-dot: 2.75rem;
+  }
+  .room-rail::before { @apply bottom-auto left-6 right-6 h-px w-auto; top: calc(var(--room-dot) / 2); }
+  .room-picker { @apply min-w-[3.45rem] flex-col gap-1.5 text-center text-[.67rem]; }
+  .room-expand { @apply top-5 size-10; }
+  .room-details { @apply mx-[6vw] mb-6; }
+  .room-details h2 { @apply text-[clamp(3.45rem,13vw,5rem)]; }
+  .room-photo-bar { @apply flex-col-reverse items-start gap-3 pb-4; }
+  .room-photo-controls { @apply w-full justify-between gap-2; }
+  .room-thumbs { @apply min-w-0 flex-1 justify-center; }
+  .room-thumb { @apply h-12 w-full max-w-[6rem]; }
   .contact-page { @apply flex flex-col-reverse; }
   .contact-content { @apply py-9; }
   .contact-image { @apply min-h-64; }

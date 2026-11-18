@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, CarFront, Check, CookingPot, Menu, Snowflake, Sparkles, Wifi, X, Zap } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 import { createRoot } from 'react-dom/client';
+import { RoomGallery, type GalleryRoom } from './RoomGallery';
 import './styles.css';
 
 const pages = [
@@ -9,10 +10,34 @@ const pages = [
   { href: '/contact', label: 'Contact' },
 ] as const;
 
-const spaces = [
-  { id: 'living', title: 'Living room', image: '/images/living.jpg', alt: 'Cognac leather seating and warm wood in an apartment living room', description: 'A place to settle in after a day out.' },
-  { id: 'bedroom', title: 'Bedroom', image: '/images/bedroom.jpg', alt: 'A neatly made bed with soft linens and warm bedside lighting', description: 'Soft linens and warm light for a slower morning.' },
-  { id: 'kitchen', title: 'Kitchen', image: '/images/kitchen.jpg', alt: 'A slate-toned kitchen with timber details and pendant lighting', description: 'Space to make coffee, cook, and eat at your own pace.' },
+const spaces: GalleryRoom[] = [
+  {
+    id: 'living', title: 'Living room', image: '/images/living.jpg',
+    alt: 'Cognac leather seating and warm wood in an apartment living room',
+    description: 'A place to settle in after a day out.',
+    gallery: [
+      { image: '/images/living-view-1.jpg', alt: 'Wide view of the leather sofa and oak coffee table' },
+      { image: '/images/living-view-2.jpg', alt: 'Living room from the opposite side of the sofa' },
+    ],
+  },
+  {
+    id: 'bedroom', title: 'Bedroom', image: '/images/bedroom.jpg',
+    alt: 'A neatly made bed with soft linens and warm bedside lighting',
+    description: 'Soft linens and warm light for a slower morning.',
+    gallery: [
+      { image: '/images/bedroom-view-1.jpg', alt: 'Bedroom with a walnut headboard and rust-colored throw' },
+      { image: '/images/bedroom-view-2.jpg', alt: 'Bedroom view from the foot of the bed' },
+    ],
+  },
+  {
+    id: 'kitchen', title: 'Kitchen', image: '/images/kitchen.jpg',
+    alt: 'A slate-toned kitchen with timber details and pendant lighting',
+    description: 'Space to make coffee, cook, and eat at your own pace.',
+    gallery: [
+      { image: '/images/kitchen-view-1.jpg', alt: 'Kitchen island beneath brass pendant lights' },
+      { image: '/images/kitchen-view-2.jpg', alt: 'Kitchen view along the worktop and windows' },
+    ],
+  },
 ];
 
 const services = [
@@ -98,21 +123,7 @@ function Home() {
 function Features() {
   return (
     <>
-      <section className="features-page" aria-labelledby="features-title">
-        <div className="features-heading">
-          <h1 id="features-title">Explore the spaces</h1>
-          <p>Illustrative interiors</p>
-        </div>
-        <div className="space-grid">
-          {spaces.map(({ id, title, image, alt, description }) => (
-            <article className="space-card" id={id} key={id}>
-              <img src={image} alt={alt} />
-              <h2>{title}</h2>
-              <p>{description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <RoomGallery rooms={spaces} />
       <Services />
       <div className="features-cta"><a className="button" href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></a></div>
     </>
