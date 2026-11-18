@@ -30,8 +30,7 @@
 .primary-nav { @apply flex items-center gap-9 text-sm; }
 .primary-nav > a:not(.header-cta) { @apply relative py-2; }
 .primary-nav > a[aria-current]::after { content: ""; @apply absolute -bottom-0.5 left-0 h-px w-full bg-brass; }
-.primary-nav > a:hover, .site-footer a:hover { @apply text-brass; }
-.header-cta { @apply inline-flex items-center gap-2 border border-brass/55 px-4 py-2; }
+.primary-nav > a:not(.header-cta):hover, .site-footer a:hover { @apply text-brass; }
 .menu-button { @apply hidden; }
 
 .hero { @apply relative isolate grid bg-slate text-linen; grid-template-columns: 35% 65%; min-height: calc(5rem + clamp(480px, 61vh, 760px)); }
@@ -41,12 +40,15 @@
 .hero h1 { font-size: clamp(4.15rem, 6.55vw, 8rem); line-height: .88; letter-spacing: -.025em; white-space: nowrap; }
 .hero h1 em { @apply text-brass; }
 .hero-description { @apply mt-6 max-w-58 text-sm leading-relaxed text-alabaster/85; }
-.button { @apply inline-flex min-h-12 items-center justify-center gap-4 bg-cognac px-5 py-3 text-sm font-semibold text-linen transition-colors hover:bg-[#70391d]; }
-.hero-copy .button {
-  @apply mt-8 rounded-md;
+.action-button {
+  @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-4 rounded-md bg-cognac px-5 py-3 text-sm font-semibold text-linen transition-colors hover:bg-[#70391d] disabled:cursor-default disabled:opacity-65;
   background-image: linear-gradient(180deg, #ffffff16, #00000020);
   box-shadow: 0 7px 14px #14151670, inset 0 2px 3px #f7eddd2e, inset 0 -2px 4px #2c130e4d;
 }
+.action-button:focus-visible { outline-color: var(--color-cognac); }
+.site-header .action-button:focus-visible, .hero-copy .action-button:focus-visible { outline-color: var(--color-linen); }
+.action-button.header-cta { @apply min-h-10 gap-2 px-4 py-2; }
+.hero-copy .action-button { @apply mt-8; }
 .scroll-link {
   @apply absolute bottom-5 left-[6vw] inline-flex size-10 items-center justify-center rounded-full bg-slate-deep transition-colors hover:bg-slate;
   background-image: linear-gradient(155deg, #f7eddd1c, #0000001a);
@@ -149,12 +151,12 @@
 .contact-form input, .contact-form textarea { @apply mt-1 block w-full min-w-0 border border-slate/35 bg-white/45 px-3 py-2 text-base font-normal; }
 .contact-form textarea { @apply resize-y; }
 .date-fields { @apply grid grid-cols-2 gap-3; }
-.contact-form button { @apply justify-self-start disabled:opacity-65; }
+.contact-form .action-button { @apply justify-self-start; }
 .contact-trap { @apply absolute size-px overflow-hidden opacity-0; }
 .form-success { @apply mt-4 flex items-center gap-2; }
 .form-error { @apply mt-4 text-[#923823]; }
 .not-found { @apply px-[6vw] py-24; }
-.not-found .button { @apply mt-8; }
+.not-found .action-button { @apply mt-8; }
 
 @media (max-width: 1050px) {
   .hero { grid-template-columns: 39% 61%; }
@@ -169,7 +171,7 @@
   .hero .site-header { @apply relative; }
   .hero-copy { @apply px-[6vw] pt-10 pb-8; }
   .hero h1 { font-size: clamp(3.7rem, 12vw, 6rem); }
-  .hero-copy .button { @apply mt-5; }
+  .hero-copy .action-button { @apply mt-5; }
   .hero-description { @apply mt-4; }
   .eyebrow { @apply mb-4; }
   .scroll-link { @apply right-[6vw] bottom-9 left-auto; }

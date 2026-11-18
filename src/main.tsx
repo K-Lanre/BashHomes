@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, CarFront, Check, CookingPot, Menu, Snowflake, Sparkles, Wifi, X, Zap } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 import { createRoot } from 'react-dom/client';
+import { ActionButton } from './ActionButton';
 import { RoomGallery, type GalleryRoom } from './RoomGallery';
 import './styles.css';
 
@@ -93,7 +94,7 @@ function Header() {
       </button>
       <nav id="primary-navigation" className={menuOpen ? 'primary-nav is-open' : 'primary-nav'} aria-label="Main navigation">
         {pages.map(({ href, label }) => <a key={href} href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>)}
-        <a className="header-cta" href="/contact">Inquire <ArrowUpRight size={14} aria-hidden="true" /></a>
+        <ActionButton className="header-cta" href="/contact">Inquire <ArrowUpRight size={14} aria-hidden="true" /></ActionButton>
       </nav>
     </header>
   );
@@ -124,7 +125,7 @@ function Home() {
           <p className="eyebrow">Short-let apartments</p>
           <h1 id="home-title" tabIndex={-1}>Make yourself<br /><em>at home.</em></h1>
           <p className="hero-description">Furnished apartments for a few nights or a little longer.</p>
-          <a className="button" href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></a>
+          <ActionButton href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></ActionButton>
           <a className="scroll-link" href="#services" aria-label="Explore services and amenities"><ArrowDown size={17} aria-hidden="true" /></a>
         </div>
         <div className="hero-gallery">
@@ -146,7 +147,7 @@ function Features() {
   return (
     <>
       <RoomGallery rooms={featureSpaces} header={<Header />} />
-      <div className="features-cta"><a className="button" href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></a></div>
+      <div className="features-cta"><ActionButton href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></ActionButton></div>
     </>
   );
 }
@@ -212,7 +213,7 @@ function Contact() {
             </div>
             <label>Message<textarea name="message" rows={4} maxLength={2000} required /></label>
             <div className="contact-trap" aria-hidden="true"><input name="website" tabIndex={-1} autoComplete="off" /></div>
-            <button className="button" type="submit">{state === 'sending' ? 'Sending…' : 'Send inquiry'}<ArrowDownRight size={17} aria-hidden="true" /></button>
+            <ActionButton type="submit">{state === 'sending' ? 'Sending…' : 'Send inquiry'}<ArrowDownRight size={17} aria-hidden="true" /></ActionButton>
           </fieldset>
           {state === 'sent' && <p className="form-success" role="status"><Check size={18} aria-hidden="true" /> Thanks. Your inquiry has been received.</p>}
           {state === 'error' && <p className="form-error" role="alert">{notice}</p>}
@@ -245,7 +246,7 @@ createRoot(document.getElementById('root')!).render(
         {currentPath === '/' && <Home />}
         {currentPath === '/features' && <Features />}
         {currentPath === '/contact' && <Contact />}
-        {!page && <section className="not-found"><h1>Page not found</h1><a className="button" href="/">Back to home <ArrowRight size={17} /></a></section>}
+        {!page && <section className="not-found"><h1>Page not found</h1><ActionButton href="/">Back to home <ArrowRight size={17} aria-hidden="true" /></ActionButton></section>}
       </main>
       <Footer />
     </div>
