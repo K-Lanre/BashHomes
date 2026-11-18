@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, CarFront, Check, CookingPot, Menu, Snowflake, Sparkles, Wifi, X, Zap } from 'lucide-react';
+import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, CarFront, Check, CookingPot, Facebook, Instagram, Menu, MessageCircle, Phone, Snowflake, Sparkles, Wifi, X, Zap } from 'lucide-react';
 import { useRef, useState, type FormEvent } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ActionButton } from './ActionButton';
@@ -152,11 +152,11 @@ function Features() {
         <dl className="stay-details-list">
           <div>
             <dt>Price per night (₦)</dt>
-            <dd>Contact us for the nightly rate in naira.</dd>
+            <dd><strong className="stay-amount">₦100,000</strong> per night<span className="rate-note">Sample rate · Confirm when booking.</span></dd>
           </div>
           <div>
             <dt>Refundable caution deposit</dt>
-            <dd>A caution deposit is payable in advance and returned after your stay, subject to deductions for any damages. The amount will be confirmed before booking.</dd>
+            <dd><strong className="stay-amount">₦50,000</strong> payable in advance and returned after your stay, subject to deductions for any damages.<span className="rate-note">Sample deposit · Confirm when booking.</span></dd>
           </div>
           <div>
             <dt>Additional charges</dt>
@@ -219,6 +219,14 @@ function Contact() {
       <div className="contact-content">
         <h1 id="contact-title">Plan your stay</h1>
         <p>Send us your dates or ask a question about Bash Homes.</p>
+        <div className="contact-direct" aria-label="Phone and social media">
+          <div className="contact-phone"><Phone size={18} aria-hidden="true" /><span>+234 XXX XXX XXXX<small>Phone number coming soon</small></span></div>
+          <div className="contact-socials" role="group" aria-label="Social profiles coming soon">
+            <span className="contact-social" role="img" aria-label="Instagram profile coming soon" title="Instagram profile coming soon"><Instagram size={21} aria-hidden="true" /></span>
+            <span className="contact-social" role="img" aria-label="Facebook profile coming soon" title="Facebook profile coming soon"><Facebook size={21} aria-hidden="true" /></span>
+            <span className="contact-social" role="img" aria-label="WhatsApp contact coming soon" title="WhatsApp contact coming soon"><MessageCircle size={21} aria-hidden="true" /></span>
+          </div>
+        </div>
         <form className="contact-form" onSubmit={submit} aria-busy={state === 'sending'}>
           <fieldset disabled={state === 'sending'}>
             <label>Full name<input name="name" autoComplete="name" maxLength={100} required /></label>
