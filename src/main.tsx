@@ -93,7 +93,7 @@ function Header() {
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
       <nav id="primary-navigation" className={menuOpen ? 'primary-nav is-open' : 'primary-nav'} aria-label="Main navigation">
-        {pages.map(({ href, label }) => <a key={href} href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>)}
+        {pages.filter(({ href }) => href !== '/contact').map(({ href, label }) => <a key={href} href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>)}
         <ActionButton className="header-cta" href="/contact">Inquire <ArrowUpRight size={14} aria-hidden="true" /></ActionButton>
       </nav>
     </header>
@@ -147,7 +147,24 @@ function Features() {
   return (
     <>
       <RoomGallery rooms={featureSpaces} header={<Header />} />
-      <div className="features-cta"><ActionButton href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></ActionButton></div>
+      <section className="stay-details" aria-labelledby="stay-details-title">
+        <h2 id="stay-details-title">Before your stay</h2>
+        <dl className="stay-details-list">
+          <div>
+            <dt>Price per night</dt>
+            <dd>Contact us for the nightly rate.</dd>
+          </div>
+          <div>
+            <dt>Refundable damage deposit</dt>
+            <dd>A damage deposit is payable in advance and returned after your stay, subject to any damage deductions. The amount will be confirmed before booking.</dd>
+          </div>
+          <div>
+            <dt>Additional charges</dt>
+            <dd>Extra services or costs incurred during your stay may be charged separately.</dd>
+          </div>
+        </dl>
+        <ActionButton href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></ActionButton>
+      </section>
     </>
   );
 }
