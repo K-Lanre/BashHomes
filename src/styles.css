@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate: #24363e;
+  --color-slate-deep: #1c2b31;
+  --color-alabaster: #eee0c8;
+  --color-linen: #f7eddd;
+  --color-cognac: #8a4b29;
+  --color-brass: #dfb68e;
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-linen font-sans text-slate antialiased; }
+  h1, h2 { @apply font-display font-normal; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+  ::selection { @apply bg-cognac text-linen; }
+}
+
+.site-shell { @apply flex min-h-screen flex-col; }
+.site-shell > main { @apply flex-1; }
+.skip-link { @apply fixed left-4 top-3 z-50 -translate-y-24 bg-linen px-4 py-2 focus:translate-y-0; }
+.site-header { @apply relative z-10 flex h-20 items-center justify-between bg-slate-deep px-[6vw] text-linen; border-bottom: 1px solid #f7eddd26; }
+.wordmark { @apply inline-flex items-baseline gap-0.5 text-[2.05rem] leading-none font-bold tracking-[-.09em]; }
+.wordmark > span { @apply text-brass; }
+.wordmark small { @apply ml-2 text-[.58rem] font-bold tracking-[.24em]; }
+.primary-nav { @apply flex items-center gap-9 text-sm; }
+.primary-nav > a:not(.header-cta) { @apply relative py-2; }
+.primary-nav > a[aria-current]::after { content: ""; @apply absolute -bottom-0.5 left-0 h-px w-full bg-brass; }
+.primary-nav > a:hover, .site-footer a:hover { @apply text-brass; }
+.header-cta { @apply inline-flex items-center gap-2 border border-brass/55 px-4 py-2; }
+.menu-button { @apply hidden; }
+
+.hero { @apply relative grid bg-slate text-linen; grid-template-columns: 35% 65%; min-height: clamp(480px, 61vh, 760px); }
+.hero-copy { @apply relative z-1 flex flex-col items-start justify-center pl-[6vw] pr-5 pt-9 pb-20; }
+.eyebrow { @apply mb-5 text-[.69rem] font-bold tracking-[.2em] text-brass uppercase; }
+.hero h1 { font-size: clamp(4.15rem, 6.55vw, 8rem); line-height: .88; letter-spacing: -.025em; white-space: nowrap; }
+.hero h1 em { @apply text-brass; }
+.hero-description { @apply mt-6 max-w-58 text-sm leading-relaxed text-alabaster/85; }
+.button { @apply inline-flex min-h-12 items-center justify-center gap-4 bg-cognac px-5 py-3 text-sm font-semibold text-linen transition-colors hover:bg-[#70391d]; }
+.hero-copy .button { @apply mt-8; }
+.scroll-link { @apply absolute bottom-5 left-[6vw] inline-flex size-9 items-center justify-center rounded-full border border-alabaster/35 transition-colors hover:bg-linen hover:text-slate; }
+.hero-gallery { @apply relative grid min-w-0 grid-cols-3; }
+.hero-panel { @apply relative isolate flex min-w-0 items-end overflow-hidden border-l border-linen/20 p-[clamp(.8rem,2vw,2rem)] pb-9; }
+.hero-panel::after { content: ""; @apply absolute inset-0 -z-10; background: linear-gradient(180deg, #161d2010 25%, #161d2047 64%, #101618d9 100%); }
+.hero-panel img { @apply absolute inset-0 -z-10 size-full object-cover transition-transform duration-500; }
+.hero-panel:hover img, .hero-panel:focus-visible img { @apply scale-105; }
+.hero-panel:focus-visible { outline-offset: -4px; }
+.panel-label { @apply flex w-full items-end justify-between gap-1 border-t border-linen/45 pt-3 font-display text-[clamp(1.3rem,2.55vw,3rem)] leading-none; }
+.panel-label svg { @apply mb-1 shrink-0; }
+.image-note { @apply pointer-events-none absolute right-3 bottom-2 text-[.65rem] text-linen; text-shadow: 0 1px 4px #111; }
+
+.services { @apply bg-alabaster px-[6vw] pt-10 pb-12 text-center; }
+.services-heading h2 { @apply text-[clamp(2.5rem,4vw,3.6rem)] leading-none; }
+.services-heading p { @apply mt-2 text-sm text-slate/80; }
+.services-list { @apply mx-auto mt-7 grid max-w-5xl grid-cols-6 gap-x-3 gap-y-7; }
+.services-list li { @apply flex flex-col items-center gap-3 text-center text-sm font-semibold; }
+.service-icon { @apply grid size-[3.65rem] place-items-center rounded-full bg-linen text-cognac; box-shadow: 0 9px 20px -9px #66361d75, 0 2px 4px #66361d13; }
+
+.site-footer { @apply flex min-h-14 items-center justify-center gap-4 bg-slate-deep px-3 text-xs text-alabaster sm:gap-6; }
+.site-footer nav { @apply flex items-center gap-3 sm:gap-5; }
+.site-footer > span, .site-footer a { @apply whitespace-nowrap; }
+.site-footer nav::before { content: "·"; @apply text-brass; }
+
+.features-page { @apply mx-auto max-w-[100rem] px-[6vw] pt-12 pb-14; }
+.features-heading { @apply mb-8; }
+.features-heading h1, .contact-content h1, .not-found h1 { @apply text-[clamp(3.7rem,7vw,7rem)] leading-[.95]; }
+.features-heading p { @apply mt-3 text-sm text-slate/80; }
+.space-grid { @apply grid grid-cols-3 gap-5; }
+.space-card { @apply scroll-mt-5; }
+.space-card img { @apply aspect-[4/5] w-full bg-alabaster object-cover; }
+.space-card h2 { @apply mt-4 text-4xl leading-none; }
+.space-card p { @apply mt-2 text-sm leading-relaxed; }
+.features-cta { @apply py-8 text-center; }
+.contact-page { @apply grid min-h-[calc(100svh-8.5rem)] grid-cols-[.9fr_1.1fr]; }
+.contact-image { @apply relative min-h-70 overflow-hidden bg-slate; }
+.contact-image::after { content: ""; @apply pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent; }
+.contact-image img { @apply absolute size-full object-cover; }
+.contact-image .image-note { @apply z-1; }
+.contact-content { @apply mx-auto w-full max-w-3xl px-[6vw] py-12; }
+.contact-content > p { @apply mt-4 text-sm leading-relaxed; }
+.contact-form { @apply mt-7; }
+.contact-form fieldset { @apply grid min-w-0 gap-4; }
+.contact-form label { @apply block text-sm font-semibold; }
+.contact-form label span { @apply font-normal text-slate/80; }
+.contact-form input, .contact-form textarea { @apply mt-1 block w-full min-w-0 border border-slate/35 bg-white/45 px-3 py-2 text-base font-normal; }
+.contact-form textarea { @apply resize-y; }
+.date-fields { @apply grid grid-cols-2 gap-3; }
+.contact-form button { @apply justify-self-start disabled:opacity-65; }
+.contact-trap { @apply absolute size-px overflow-hidden opacity-0; }
+.form-success { @apply mt-4 flex items-center gap-2; }
+.form-error { @apply mt-4 text-[#923823]; }
+.not-found { @apply px-[6vw] py-24; }
+.not-found .button { @apply mt-8; }
+
+@media (max-width: 1050px) {
+  .hero { grid-template-columns: 39% 61%; }
+  .hero h1 { font-size: clamp(3.35rem, 7.1vw, 5.4rem); }
+}
+@media (max-width: 720px) {
+  .site-header { @apply h-16; }
+  .menu-button { @apply grid size-10 place-items-center; }
+  .primary-nav { @apply absolute top-full right-0 left-0 hidden flex-col items-start gap-3 bg-slate-deep px-[6vw] pt-3 pb-6 shadow-lg; }
+  .primary-nav.is-open { @apply flex; }
+  .hero { @apply block min-h-0; }
+  .hero-copy { @apply px-[6vw] pt-10 pb-8; }
+  .hero h1 { font-size: clamp(3.7rem, 12vw, 6rem); }
+  .hero-copy .button { @apply mt-5; }
+  .hero-description { @apply mt-4; }
+  .eyebrow { @apply mb-4; }
+  .scroll-link { @apply right-[6vw] bottom-9 left-auto; }
+  .hero-gallery { @apply h-[clamp(220px,49vw,420px)]; }
+  .hero-panel { @apply px-2.5 pb-7; }
+  .panel-label { @apply text-[clamp(.97rem,4vw,1.65rem)]; }
+  .panel-label svg { @apply mb-0 size-3; }
+  .services { @apply pt-8 pb-9; }
+  .services-list { @apply grid-cols-3; }
+  .services-list li { @apply text-xs; }
+  .space-grid { @apply grid-cols-1 gap-8; }
+  .space-card img { @apply aspect-[5/4]; }
+  .contact-page { @apply flex flex-col-reverse; }
+  .contact-content { @apply py-9; }
+  .contact-image { @apply min-h-64; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; }
+}
