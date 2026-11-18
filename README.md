@@ -15,3 +15,9 @@ Run `npm install` and `npm run dev`. Run `npm run build` for the production brow
 5. Submit a test inquiry and check that it appears in the **Inquiries** tab. The script creates that tab if needed.
 
 The form shows a confirmation after the server confirms that Google saved the inquiry. It shows an unavailable message until the server environment is configured.
+
+## Deploy to Vercel
+
+Import the GitHub repository into Vercel. The tracked `vercel.json` sets the build command, browser output directory, and page routes. The `api/inquiries.js` function runs the same inquiry handler used locally.
+
+In the Vercel project's environment variables, add `GOOGLE_APPS_SCRIPT_URL` and `GOOGLE_APPS_SCRIPT_SECRET` using the values from your local environment. Redeploy after setting them, then test an inquiry on the deployed Contact page.
