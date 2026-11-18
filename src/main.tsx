@@ -40,6 +40,28 @@ const spaces: GalleryRoom[] = [
   },
 ];
 
+const featureSpaces: GalleryRoom[] = [
+  ...spaces,
+  {
+    id: 'dining', title: 'Dining room', image: '/images/dining-view-2.jpg',
+    alt: 'Dining table and cognac chairs seen from the window side',
+    description: 'A table for breakfast, dinner, or a quiet coffee.',
+    gallery: [{ image: '/images/dining-view-1.jpg', alt: 'Oak dining table beneath a linen pendant' }],
+  },
+  {
+    id: 'bathroom', title: 'Bathroom', image: '/images/bathroom-view-2.jpg',
+    alt: 'Warm limestone bathroom with a walnut vanity',
+    description: 'Warm stone, soft lighting, and a walk-in shower.',
+    gallery: [{ image: '/images/bathroom-view-1.jpg', alt: 'Glass shower and brushed brass fixtures' }],
+  },
+  {
+    id: 'balcony', title: 'Balcony', image: '/images/balcony-view-2.jpg',
+    alt: 'Iron balcony railing overlooking leafy streets',
+    description: 'A spot for fresh air and a view over the treetops.',
+    gallery: [{ image: '/images/balcony-view-1.jpg', alt: 'Cane chairs and planters on a city balcony' }],
+  },
+];
+
 const services = [
   { label: 'Wi-Fi', icon: Wifi },
   { label: '24/7 Power', icon: Zap },
@@ -123,8 +145,7 @@ function Home() {
 function Features() {
   return (
     <>
-      <RoomGallery rooms={spaces} />
-      <Services />
+      <RoomGallery rooms={featureSpaces} header={<Header />} />
       <div className="features-cta"><a className="button" href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></a></div>
     </>
   );
@@ -217,9 +238,9 @@ if (page && page.href !== '/') document.title = page.label + ' | Bash Homes';
 
 createRoot(document.getElementById('root')!).render(
   <>
-    <a className="skip-link" href={currentPath === '/' ? '#home-title' : '#main'}>Skip to content</a>
+    <a className="skip-link" href={currentPath === '/' ? '#home-title' : currentPath === '/features' ? '#features-title' : '#main'}>Skip to content</a>
     <div className="site-shell">
-      {currentPath !== '/' && <Header />}
+      {currentPath !== '/' && currentPath !== '/features' && <Header />}
       <main id="main" tabIndex={-1}>
         {currentPath === '/' && <Home />}
         {currentPath === '/features' && <Features />}

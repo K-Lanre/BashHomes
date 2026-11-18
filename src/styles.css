@@ -35,7 +35,7 @@
 .menu-button { @apply hidden; }
 
 .hero { @apply relative isolate grid bg-slate text-linen; grid-template-columns: 35% 65%; min-height: calc(5rem + clamp(480px, 61vh, 760px)); }
-.hero .site-header { @apply absolute inset-x-0 top-0 border-0 bg-transparent; }
+.hero .site-header, .room-gallery .site-header { @apply absolute inset-x-0 top-0 border-0 bg-transparent; }
 .hero-copy { @apply relative z-1 flex flex-col items-start justify-center pl-[6vw] pr-5 pt-[7.25rem] pb-20; }
 .eyebrow { @apply mb-5 text-[.69rem] font-bold tracking-[.2em] text-brass uppercase; }
 .hero h1 { font-size: clamp(4.15rem, 6.55vw, 8rem); line-height: .88; letter-spacing: -.025em; white-space: nowrap; }
@@ -79,13 +79,14 @@
 .site-footer > span, .site-footer a { @apply whitespace-nowrap; }
 .site-footer nav::before { content: "·"; @apply text-brass; }
 
-.room-gallery { @apply relative isolate flex min-h-[clamp(550px,73svh,840px)] flex-col justify-end bg-slate-deep text-linen; }
+.room-gallery { @apply relative isolate flex min-h-[clamp(650px,85svh,900px)] flex-col justify-end bg-slate-deep text-linen; }
 .room-preview { @apply absolute inset-0 cursor-zoom-in overflow-hidden text-linen; }
 .room-preview:focus-visible { outline-offset: -5px; }
 .room-preview::after {
   content: "";
   @apply pointer-events-none absolute inset-0;
-  background: linear-gradient(90deg, #101b20db, #101b204f 30%, transparent 66%),
+  background: linear-gradient(180deg, #101b20d6, transparent 24%),
+    linear-gradient(90deg, #101b20db, #101b204f 30%, transparent 66%),
     linear-gradient(0deg, #101b20eb, #101b2090 21%, transparent 65%);
 }
 .room-preview-image { @apply size-full object-cover; }
@@ -93,10 +94,11 @@
   .room-preview-image { animation: room-photo-in .25s ease-out; }
 }
 @keyframes room-photo-in { from { opacity: .55; } to { opacity: 1; } }
-.room-expand { @apply absolute top-6 right-[6vw] z-1 grid size-11 place-items-center rounded-full bg-slate-deep/80 shadow-lg; }
+.room-expand { @apply absolute top-24 right-[6vw] z-1 grid size-11 place-items-center rounded-full bg-slate-deep/80 shadow-lg; }
+.room-rail-wrap { @apply absolute top-[calc(50%+2.5rem)] left-[6vw] z-2 -translate-y-1/2; }
 .room-rail {
-  @apply absolute top-1/2 left-[6vw] z-2 flex -translate-y-1/2 flex-col gap-5;
-  --room-dot: 3.5rem;
+  @apply relative flex flex-col gap-4;
+  --room-dot: 3.25rem;
 }
 .room-rail::before {
   content: "";
@@ -179,19 +181,21 @@
   .services { @apply pt-8 pb-9; }
   .services-list { @apply grid-cols-3; }
   .services-list li { @apply text-xs; }
-  .room-gallery { @apply min-h-[clamp(510px,72svh,690px)]; }
-  .room-preview::after { background: linear-gradient(0deg, #101b20f5, #101b2090 34%, transparent 65%, #101b20ad); }
+  .room-gallery { @apply min-h-[clamp(580px,85svh,750px)]; }
+  .room-preview::after { background: linear-gradient(0deg, #101b20f5, #101b2090 34%, transparent 63%, #101b20df); }
+  .room-rail-wrap { @apply inset-x-0 top-[4.65rem] translate-y-0 overflow-x-auto px-[4vw] py-1; scrollbar-width: none; }
   .room-rail {
-    @apply top-5 left-[6vw] translate-y-0 flex-row items-start gap-[clamp(.85rem,4vw,1.75rem)];
-    --room-dot: 2.75rem;
+    @apply w-max min-w-full flex-row items-start justify-between gap-1;
+    --room-dot: 2.5rem;
   }
-  .room-rail::before { @apply bottom-auto left-6 right-6 h-px w-auto; top: calc(var(--room-dot) / 2); }
-  .room-picker { @apply min-w-[3.45rem] flex-col gap-1.5 text-center text-[.67rem]; }
-  .room-expand { @apply top-5 size-10; }
+  .room-rail::before { @apply right-6 bottom-auto left-6 h-px w-auto; top: calc(var(--room-dot) / 2); }
+  .room-picker { @apply min-w-10 flex-col gap-1.5 px-0.5 text-center text-[.65rem] whitespace-nowrap; }
+  .room-expand { @apply top-40 size-10; }
   .room-details { @apply mx-[6vw] mb-6; }
   .room-details h2 { @apply text-[clamp(3.45rem,13vw,5rem)]; }
   .room-photo-bar { @apply flex-col-reverse items-start gap-3 pb-4; }
-  .room-photo-controls { @apply w-full justify-between gap-2; }
+  .room-photo-controls { @apply w-full gap-2; }
+  .room-photo-controls .room-step { @apply size-9; }
   .room-thumbs { @apply min-w-0 flex-1 justify-center; }
   .room-thumb { @apply h-12 w-full max-w-[6rem]; }
   .contact-page { @apply flex flex-col-reverse; }
