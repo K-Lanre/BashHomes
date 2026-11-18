@@ -135,7 +135,6 @@ function Home() {
               <span className="panel-label">{title}<ArrowUpRight size={16} aria-hidden="true" /></span>
             </a>
           ))}
-          <span className="image-note">Illustrative interiors</span>
         </div>
       </section>
       <Services />
@@ -214,7 +213,6 @@ function Contact() {
     <section className="contact-page" aria-labelledby="contact-title">
       <div className="contact-image">
         <img src="/images/living.jpg" alt="A warmly furnished short-stay apartment living room" />
-        <span className="image-note">Illustrative interior</span>
       </div>
       <div className="contact-content">
         <h1 id="contact-title">Plan your stay</h1>

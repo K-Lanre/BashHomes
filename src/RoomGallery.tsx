@@ -119,7 +119,6 @@ export function RoomGallery({ rooms, header }: { rooms: readonly GalleryRoom[]; 
       </div>
 
       <div className="room-photo-bar">
-        <span className="room-image-note">Illustrative interiors</span>
         <div className="room-photo-controls" role="group" aria-label={room.title + ' photos'} onKeyDown={onPhotoKey}>
           <button className="room-step" type="button" onClick={() => setPlaying((active) => !active)} aria-label={playing ? 'Pause slideshow' : 'Play slideshow'}>
             {playing ? <Pause size={16} /> : <Play size={16} />}
