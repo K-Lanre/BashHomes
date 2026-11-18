@@ -72,9 +72,10 @@ function Home() {
   return (
     <>
       <section className="hero" aria-labelledby="home-title">
+        <Header />
         <div className="hero-copy">
           <p className="eyebrow">Short-let apartments</p>
-          <h1 id="home-title">Make yourself<br /><em>at home.</em></h1>
+          <h1 id="home-title" tabIndex={-1}>Make yourself<br /><em>at home.</em></h1>
           <p className="hero-description">Furnished apartments for a few nights or a little longer.</p>
           <a className="button" href="/contact">Inquire about a stay <ArrowRight size={17} aria-hidden="true" /></a>
           <a className="scroll-link" href="#services" aria-label="Explore services and amenities"><ArrowDown size={17} aria-hidden="true" /></a>
@@ -205,9 +206,9 @@ if (page && page.href !== '/') document.title = page.label + ' | Bash Homes';
 
 createRoot(document.getElementById('root')!).render(
   <>
-    <a className="skip-link" href="#main">Skip to content</a>
+    <a className="skip-link" href={currentPath === '/' ? '#home-title' : '#main'}>Skip to content</a>
     <div className="site-shell">
-      <Header />
+      {currentPath !== '/' && <Header />}
       <main id="main" tabIndex={-1}>
         {currentPath === '/' && <Home />}
         {currentPath === '/features' && <Features />}
