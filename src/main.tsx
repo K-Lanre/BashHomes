@@ -151,12 +151,12 @@ function Features() {
         <h2 id="stay-details-title">Before your stay</h2>
         <dl className="stay-details-list">
           <div>
-            <dt>Price per night</dt>
-            <dd>Contact us for the nightly rate.</dd>
+            <dt>Price per night (₦)</dt>
+            <dd>Contact us for the nightly rate in naira.</dd>
           </div>
           <div>
-            <dt>Refundable damage deposit</dt>
-            <dd>A damage deposit is payable in advance and returned after your stay, subject to any damage deductions. The amount will be confirmed before booking.</dd>
+            <dt>Refundable caution deposit</dt>
+            <dd>A caution deposit is payable in advance and returned after your stay, subject to deductions for any damages. The amount will be confirmed before booking.</dd>
           </div>
           <div>
             <dt>Additional charges</dt>
